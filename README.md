@@ -19,7 +19,9 @@ Configuration parameters:
 * `update_hours`: How often telegram servers list will be updated. Default value: 12.
 * `ip`: Server external IP. Necessary for servers behind NAT, also used in invite links, if server URL was not provided. By default is empty.
 * `url`: Server URL, if any, to be used in invite links. Default value: same as `ip`.
+* `webport`: Port for HTTP Stats. Default value: 80
 * `port`: Exposed server port for invite links. Default value: 443.
+* `faketlsdomain`: Fake-TLS Domain (MTproxy -D Parameter)
 * `tag`: Your proxy tag, optionally received from [@MTProxyBot](https://t.me/MTProxybot). By default is empty.
 
 To launch container: `docker run -d --restart always -p [server-port]:443 -v [full-configuration-file-path]:/configuration.json --name mtproxy viers/mtproxy`.
@@ -27,3 +29,18 @@ To launch container: `docker run -d --restart always -p [server-port]:443 -v [fu
 To see the logs: `docker logs --follow mtproxy`.
 
 To collect server stats: `docker exec mtproxy curl http://localhost:80/stats`
+
+Example Configuration:
+{
+  "keys": [
+    ""
+  ],
+  "new_keys": 0,
+  "update_hours": 12,
+  "ip": "",
+  "url": "",
+  "webport": 80,
+  "port": 443,
+  "faketlsdomain": "",
+  "tag": ""
+}
