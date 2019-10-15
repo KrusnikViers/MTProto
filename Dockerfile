@@ -9,7 +9,6 @@ RUN pip3 install --no-cache-dir --upgrade requests==2.19              && \
     mkdir /build                                                      && \
     cd /build                                                         && \
     git clone https://github.com/TelegramMessenger/MTProxy .          && \
-    git reset --hard f9158e3129efd4ccdc291aefb840209791226a77         && \
     make                                                              && \
     mkdir /server                                                     && \
     cp /build/objs/bin/* /server                                      && \
