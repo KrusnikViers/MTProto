@@ -62,7 +62,7 @@ port = configuration.get('port', 443)
 tag = configuration.get('tag', '')
 
 # Base command for mtproxy binary, with system user, stat and proxy ports.
-command = '/server/mtproto-proxy -u nobody -p {} -H 443'.format(webport)
+command = '/server/mtproto-proxy -u nobody -p {} -H {}'.format(webport, port)
 if tag:
     command += ' -T {}'.format(tag)
 
