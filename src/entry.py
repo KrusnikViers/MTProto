@@ -57,11 +57,12 @@ new_keys = configuration.get('new_keys', 1)
 update_hours = configuration.get('update_hours', 12)
 ip = configuration.get('ip', '')
 url = configuration.get('url', ip)
+webport = configuration.get('webport', 80)
 port = configuration.get('port', 443)
 tag = configuration.get('tag', '')
 
 # Base command for mtproxy binary, with system user, stat and proxy ports.
-command = '/server/mtproto-proxy -u nobody -p 80 -H 443'
+command = '/server/mtproto-proxy -u nobody -p {} -H 443'.format(webport)
 if tag:
     command += ' -T {}'.format(tag)
 
@@ -99,6 +100,7 @@ configuration['new_keys'] = 0
 configuration['update_hours'] = update_hours
 configuration['ip'] = ip
 configuration['url'] = url
+configuration['webport'] = webport
 configuration['port'] = port
 configuration['tag'] = tag
 with open(configuration_path, 'w') as configuration_file:
