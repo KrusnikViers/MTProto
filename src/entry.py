@@ -59,12 +59,15 @@ ip = configuration.get('ip', '')
 url = configuration.get('url', ip)
 webport = configuration.get('webport', 80)
 port = configuration.get('port', 443)
+faketlsdomain = configuration.get('faketlsdomain', '')
 tag = configuration.get('tag', '')
 
 # Base command for mtproxy binary, with system user, stat and proxy ports.
 command = '/server/mtproto-proxy -u nobody -p {} -H {}'.format(webport, port)
 if tag:
     command += ' -T {}'.format(tag)
+if faketlsdomain:
+    command += ' -D {}'.format(faketlsdomain)
 
 # Generate and print client keys.
 for i in range(0, new_keys):
@@ -102,6 +105,7 @@ configuration['ip'] = ip
 configuration['url'] = url
 configuration['webport'] = webport
 configuration['port'] = port
+configuration['faketlsdomain']=faketlsdomain
 configuration['tag'] = tag
 with open(configuration_path, 'w') as configuration_file:
     json.dump(configuration, configuration_file, indent='  ')
