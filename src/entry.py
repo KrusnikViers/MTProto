@@ -65,7 +65,7 @@ tag = configuration.get('tag', '')
 # Base command for mtproxy binary, with system user, stat and proxy ports.
 command = '/server/mtproto-proxy -u nobody -p {} -H {}'.format(webport, port)
 if tag:
-    command += ' -T {}'.format(tag)
+    command += ' -P {}'.format(tag)
 if faketlsdomain:
     command += ' -D {}'.format(faketlsdomain)
 
