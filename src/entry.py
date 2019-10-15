@@ -66,6 +66,7 @@ tag = configuration.get('tag', '')
 command = '/server/mtproto-proxy -u nobody -p {} -H {}'.format(webport, port)
 if tag:
     command += ' -P {}'.format(tag)
+# Add Fake-TLS Domain
 if faketlsdomain:
     command += ' -D {}'.format(faketlsdomain)
 
@@ -95,7 +96,11 @@ if ip:
         command += ' --nat-info {}:{}'.format(local_ip, ip)
 
 # Configuration files.
-command += ' --aes-pwd {} {} -M 1'.format(secret_path, proxy_list_path)
+command += ' --aes-pwd {} {}'.format(secret_path, proxy_list_path)
+
+# Add Workers Parameter only if not in Fake-TLS Mode
+if not faketlsdomain:
+    command += ' -M 1'
 
 # Write actual configuration values into local configuration.
 configuration['keys'] = keys
